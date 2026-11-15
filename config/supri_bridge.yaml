@@ -1,0 +1,23 @@
+- ros_topic_name: /model/supri_rov/pose
+  gz_topic_name: /model/supri_rov/pose
+  ros_type_name: geometry_msgs/msg/PoseStamped
+  gz_type_name: gz.msgs.Pose
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /model/supri_rov/odometry
+  gz_topic_name: /model/supri_rov/odometry
+  ros_type_name: nav_msgs/msg/Odometry
+  gz_type_name: gz.msgs.Odometry
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /model/supri_rov/sonar
+  gz_topic_name: /model/supri_rov/sonar
+  ros_type_name: sensor_msgs/msg/LaserScan
+  gz_type_name: gz.msgs.LaserScan
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /model/supri_rov/imu
+  gz_topic_name: /model/supri_rov/imu
+  ros_type_name: sensor_msgs/msg/Imu
+  gz_type_name: gz.msgs.IMU
+  direction: GZ_TO_ROS

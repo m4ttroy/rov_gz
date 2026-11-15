@@ -1,0 +1,21 @@
+<launch>
+    <executable cmd="xterm -e bash -lc &quot;
+        source ~/venv-ardupilot/bin/activate &amp;&amp; 
+        cd ~/ardupilot/ArduSub &amp;&amp; 
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py 
+            -v ArduSub 
+            -f vectored
+            JSON 
+            -L RATBeach 
+            --out=udp:127.0.0.1:14550 
+            --console &quot;" 
+        output="screen"
+    />
+
+    <timer period="10.0">
+        <include file="$(find-pkg-share mavros)/launch/apm.launch">
+            <arg name="fcu_url" value="udp://:14550@"/>
+        </include>
+    </timer>
+
+</launch>

@@ -1,0 +1,52 @@
+<launch>
+    <!-- ROV 1 (Instance 0) -->
+    <executable cmd="bash -c '
+        source ~/venv-ardupilot/bin/activate &amp;&amp; 
+        cd ~/ardupilot/ArduSub &amp;&amp; 
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 0 -L RATBeach --out=udp:127.0.0.1:14550 '"
+        output="screen"
+    />
+
+    <!-- ROV 2 (Instance 1) -->
+    <executable cmd="bash -c '
+        source ~/venv-ardupilot/bin/activate &amp;&amp; 
+        cd ~/ardupilot/ArduSub &amp;&amp; 
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 1 -L RATBeach --out=udp:127.0.0.1:14560 '"
+        output="screen"
+    />
+
+    <!-- ROV 3 (Instance 2) -->
+    <executable cmd="bash -c '
+        source ~/venv-ardupilot/bin/activate &amp;&amp; 
+        cd ~/ardupilot/ArduSub &amp;&amp; 
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 2 -L RATBeach --out=udp:127.0.0.1:14570 '"
+        output="screen"
+    />
+
+    <!-- MAVROS Nodes (delayed by 10 seconds to let SITL instances boot) -->
+    <timer period="10.0">
+        <!-- ROV 1 MAVROS -->
+        <group>
+            <push-ros-namespace namespace="rov_0"/>
+            <include file="$(find-pkg-share mavros)/launch/apm.launch">
+                <arg name="fcu_url" value="udp://:14550@"/>
+            </include>
+        </group>
+
+        <!-- ROV 2 MAVROS -->
+        <group>
+            <push-ros-namespace namespace="rov_1"/>
+            <include file="$(find-pkg-share mavros)/launch/apm.launch">
+                <arg name="fcu_url" value="udp://:14560@"/>
+            </include>
+        </group>
+
+        <!-- ROV 3 MAVROS -->
+        <group>
+            <push-ros-namespace namespace="rov_2"/>
+            <include file="$(find-pkg-share mavros)/launch/apm.launch">
+                <arg name="fcu_url" value="udp://:14570@"/>
+            </include>
+        </group>
+    </timer>
+</launch>

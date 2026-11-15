@@ -1,0 +1,49 @@
+<launch>
+  <arg name="world" default="romv.world" description="World file name inside rov_gz/worlds"/>
+
+  <arg name="ibvs" default="false" description="Start IBVS camera bridge"/>
+  <arg name="rov" default="false" description="Start ROV bridge"/>
+  <arg name="romv" default="true" description="Start ROMV bridge"/>
+
+  <let name="rov_gz_share" value="$(find-pkg-share rov_gz)"/>
+  <let name="rov_gz_prefix" value="$(find-pkg-prefix rov_gz)"/>
+  <let name="ardu_gazebo_dir" value="$(find-pkg-prefix ardupilot_gazebo)"/>
+
+  <set_env name="GZ_SIM_RESOURCE_PATH"
+           value="$(var rov_gz_share)/models:$(var rov_gz_share)/worlds"/>
+
+  <set_env name="GZ_SIM_SYSTEM_PLUGIN_PATH"
+           value="$(var rov_gz_prefix)/lib:$(var ardu_gazebo_dir)/build"/>
+
+  <!-- Gazebo Simulation -->
+  <executable cmd="gz sim -v4 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
+
+  <!-- IBVS Bridge -->
+  <group if="$(var ibvs)">
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="camera_bridge" output="screen">
+      <param name="config_file" value="$(var rov_gz_share)/config/camera_bridge.yaml"/>
+    </node>
+    <node pkg="topic_tools" exec="relay" name="left_ir_relay" output="screen"
+          args="/camera/infra1/image_rect_raw /corrected/left/image_raw"/>
+
+    <node pkg="topic_tools" exec="relay" name="right_ir_relay" output="screen"
+          args="/camera/infra2/image_rect_raw /corrected/right/image_raw"/>
+  </group>
+
+
+  <!-- ROV Bridge -->
+  <group if="$(var rov)">
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="rov_bridge"  output="screen">
+      <param name="config_file" value="$(var rov_gz_share)/config/rov_bridge.yaml"/>
+    </node>
+  </group>
+
+
+  <!-- ROMV Bridge -->
+  <group if="$(var romv)">
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="romv_bridge" output="screen">
+      <param name="config_file" value="$(var rov_gz_share)/config/romv_bridge.yaml"/>
+    </node>
+  </group>
+
+</launch>
