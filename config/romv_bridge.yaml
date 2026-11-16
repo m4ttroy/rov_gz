@@ -53,22 +53,3 @@
   ros_type_name: sensor_msgs/msg/LaserScan
   gz_type_name: gz.msgs.LaserScan
   direction: GZ_TO_ROS
-
-
-- ros_topic_name: /rov_0/imu
-  gz_topic_name: /model/rov_0/imu
-  ros_type_name: sensor_msgs/msg/Imu
-  gz_type_name: gz.msgs.IMU
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /rov_1/imu
-  gz_topic_name: /model/rov_1/imu
-  ros_type_name: sensor_msgs/msg/Imu
-  gz_type_name: gz.msgs.IMU
-  direction: GZ_TO_ROS
-
-- ros_topic_name: /rov_2/imu
-  gz_topic_name: /model/rov_2/imu
-  ros_type_name: sensor_msgs/msg/Imu
-  gz_type_name: gz.msgs.IMU
-  direction: GZ_TO_ROS

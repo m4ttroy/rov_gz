@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find-pkg-share rov_gz)/launch/supri/gz_supri.launch.xml"/>
+    <include file="$(find-pkg-share rov_gz)/launch/supri/mav_supri.launch.xml"/>
+    <include file="$(find-pkg-share rov_gz)/launch/supri/d455_tf.launch.xml"/>
+</launch>

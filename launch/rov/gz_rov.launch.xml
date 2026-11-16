@@ -1,0 +1,27 @@
+<launch>
+  <arg name="world" default="tank_8x8.world" description="World file name inside rov_gz/worlds"/>
+  <arg name="world_name" default="tank_8x8"/>
+  <arg name="use_bridge" default="true" description="Start ros_gz_bridge"/>
+
+  <let name="rov_gz_share" value="$(find-pkg-share rov_gz)"/>
+  <let name="rov_gz_prefix" value="$(find-pkg-prefix rov_gz)"/>
+  <let name="ardu_gazebo_dir" value="$(find-pkg-prefix ardupilot_gazebo)"/>
+
+  <set_env name="GZ_SIM_RESOURCE_PATH" 
+          value="$(var rov_gz_share)/models:$(var rov_gz_share)/worlds:$(env GZ_SIM_RESOURCE_PATH '')"/>
+  <set_env name="GZ_SIM_SYSTEM_PLUGIN_PATH"
+          value="$(var rov_gz_prefix)/lib:$(var ardu_gazebo_dir)/build:$(env GZ_SIM_SYSTEM_PLUGIN_PATH '')"/>
+          
+  <executable cmd="gz sim -v4 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
+
+  <group if="$(var use_bridge)">
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="rov_bridge" output="screen">
+      <param name="config_file" value="$(var rov_gz_share)/config/rov_bridge.yaml"/>
+    </node>
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="imu_bridge" 
+          args="/world/$(var world_name)/model/bluerov2/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
+          output="screen">
+      <remap from="/world/$(var world_name)/model/bluerov2/link/base_link/sensor/imu_sensor/imu" to="/model/rov/imu"/>
+    </node>
+  </group>
+</launch>

@@ -4,8 +4,9 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 workspace_src_dir="$(cd "$script_dir/../../../.." && pwd)"
 
-ARDUPILOT_GAZEBO="${ARDUPILOT_GAZEBO:-$workspace_src_dir/ardupilot_gazebo}"
-ARDUPILOT_HOME="${ARDUPILOT_HOME:-$HOME/Ardusupri}"
+# ARDUPILOT_GAZEBO="${ARDUPILOT_GAZEBO:-$workspace_src_dir/ardupilot_gazebo}"
+ARDUPILOT_GAZEBO="${ARDUPILOT_GAZEBO:-$HOME/rov_ws/src/ardupilot_gazebo}"
+ARDUPILOT_HOME="${ARDUPILOT_HOME:-$HOME/ardupilot}"
 
 export GZ_VERSION=harmonic
 

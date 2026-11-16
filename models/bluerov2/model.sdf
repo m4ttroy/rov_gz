@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <sdf version="1.6">
-  <model name="rov">
+  <model name="bluerov2">
     <pose>0 0 0 0 0 0</pose>
 
     <!-- BlueROV2 thruster reference: http://www.ardusub.com/introduction/features.html -->
@@ -19,10 +19,10 @@
         filename="gz-sim-odometry-publisher-system"
         name="gz::sim::systems::OdometryPublisher">
       <dimensions>3</dimensions>
-      <odom_frame>rov/odom</odom_frame>
-      <robot_base_frame>rov/base_link</robot_base_frame>
+      <odom_frame>bluerov2/odom</odom_frame>
+      <robot_base_frame>bluerov2/base_link</robot_base_frame>
       <odom_publish_frequency>50</odom_publish_frequency>
-      <odom_topic>/model/rov/odometry</odom_topic>
+      <odom_topic>/model/bluerov2/odometry</odom_topic>
     </plugin>
 
     <link name="base_link">
@@ -42,7 +42,7 @@
       <visual name="base_link_visual">
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/bluerov2.dae</uri>
+            <uri>model://bluerov2/meshes/bluerov2.dae</uri>
             <scale>0.025 0.025 0.025</scale>
           </mesh>
         </geometry>
@@ -65,7 +65,7 @@
         <pose>0 0 0 3.142 0 0</pose>
         <always_on>1</always_on>
         <update_rate>1000.0</update_rate>
-        <topic>/model/rov/imu</topic>
+        <!-- <topic>/model/bluerov2/imu</topic> -->
       </sensor>
 
     </link>
@@ -74,6 +74,7 @@
     <plugin
         filename="gz-sim-hydrodynamics-system"
         name="gz::sim::systems::Hydrodynamics">
+      <!-- <default_current>0.15 -0.2 0.2</default_current> -->
       <link_name>base_link</link_name>
       <water_density>998.0</water_density>
       <!-- Added mass: -->
@@ -105,7 +106,7 @@
         <pose>0 0 0 -1.571 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_ccw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_ccw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -128,7 +129,7 @@
         <pose>0 0 0 -1.571 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_ccw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_ccw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -151,7 +152,7 @@
         <pose>0 0 0 1.571 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_cw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_cw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -174,7 +175,7 @@
         <pose>0 0 0 1.571 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_cw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_cw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -197,7 +198,7 @@
         <pose>0 0 0 -1.571 0 1.571</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_ccw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_ccw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -220,7 +221,7 @@
         <pose>0 0 0 1.571 0 1.571</pose>
         <geometry>
           <mesh>
-            <uri>model://rov/meshes/t200_cw_prop.dae</uri>
+            <uri>model://bluerov2/meshes/t200_cw_prop.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -288,7 +289,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster1_joint</joint_name>
       <thrust_coefficient>0.02</thrust_coefficient>
       <fluid_density>998.0</fluid_density>
@@ -300,7 +301,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster2_joint</joint_name>
       <thrust_coefficient>0.02</thrust_coefficient>
       <fluid_density>998.0</fluid_density>
@@ -312,7 +313,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster3_joint</joint_name>
       <!-- Reverse spin to balance torque -->
       <thrust_coefficient>-0.02</thrust_coefficient>
@@ -325,7 +326,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster4_joint</joint_name>
       <!-- Reverse spin to balance torque -->
       <thrust_coefficient>-0.02</thrust_coefficient>
@@ -338,7 +339,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster5_joint</joint_name>
       <thrust_coefficient>0.02</thrust_coefficient>
       <fluid_density>998.0</fluid_density>
@@ -350,7 +351,7 @@
     <plugin
         filename="gz-sim-thruster-system"
         name="gz::sim::systems::Thruster">
-      <namespace>rov</namespace>
+      <namespace>bluerov2</namespace>
       <joint_name>thruster6_joint</joint_name>
       <!-- Reverse spin to balance torque -->
       <thrust_coefficient>-0.02</thrust_coefficient>
@@ -361,7 +362,7 @@
     </plugin>
 
     <link name='ping_link'>
-      <pose>0.16 0 -0.05 0 -1.571 0</pose>
+      <pose>0.16 0 -0.05 0 -1.5 0</pose>
       <inertial>
         <mass>0.133</mass>
         <inertia>
@@ -391,7 +392,7 @@
         <always_on>1</always_on>
         <update_rate>30</update_rate>
         <visualize>1</visualize>
-        <topic>/model/rov/sonar</topic>
+        <topic>/model/bluerov2/sonar</topic>
         <pose>0 0 0 0 1.571 0</pose>
         <ray>
           <scan>
@@ -454,7 +455,7 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster1_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster1_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
@@ -463,7 +464,7 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster2_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster2_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
@@ -472,7 +473,7 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster3_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster3_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
@@ -481,7 +482,7 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster4_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster4_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
@@ -490,7 +491,7 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster5_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster5_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
@@ -499,15 +500,26 @@
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
         <type>COMMAND</type>
-        <cmd_topic>/model/rov/joint/thruster6_joint/cmd_thrust</cmd_topic>
+        <cmd_topic>/model/bluerov2/joint/thruster6_joint/cmd_thrust</cmd_topic>
         <offset>-0.5</offset>
         <multiplier>100</multiplier>
       </control>
 
+      <!--
+        Configure ArduSub to use a SITL rangefinder backend:
+        param set RNGFND1_TYPE 100        # Type = SITL
+        param set RNGFND1_FUNCTION 0      # Function = LINEAR
+        param set RNGFND1_MIN_CM 20       # Min distance is 0.5m
+        param set RNGFND1_MAX_CM 5000     # Max distance is 50m
+        param set RNGFND1_ORIENT 25       # Down
+        param set RNGFND1_POS_X -0.18
+        param set RNGFND1_POS_Y 0.0
+        param set RNGFND1_POS_Z -0.095
+      -->
       <sensor>
         <type>sonar</type>
         <index>1</index>
-        <topic>/model/rov/sonar</topic>
+        <topic>/model/bluerov2/sonar</topic>
       </sensor>
 
     </plugin>

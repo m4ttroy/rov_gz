@@ -4,7 +4,7 @@
         cd ~/ardupilot/ArduSub &amp;&amp; 
         python ~/ardupilot/Tools/autotest/sim_vehicle.py 
             -v ArduSub 
-            -f vectored
+            -f 
             JSON 
             -L RATBeach 
             --out=udp:127.0.0.1:14550 

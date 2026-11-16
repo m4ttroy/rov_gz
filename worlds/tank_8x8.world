@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.9">
-  <world name="8x8_tank">
+  <world name="tank_8x8">
 
     <!-- Base Gazebo plugins -->
     <plugin
@@ -41,7 +41,7 @@
         </density_change>
       </graded_buoyancy>
       <!-- Enable by model name -->
-      <enable>rov</enable>
+      <enable>bluerov2</enable>
     </plugin>
 
     <include>
@@ -377,7 +377,7 @@
 
     <!-- BlueROV2 Ping -->
     <include>
-      <uri>model://rov</uri>
+      <uri>model://bluerov2</uri>
       <pose>4.5 4.5 -1 0 0 0</pose>
     </include>
     
