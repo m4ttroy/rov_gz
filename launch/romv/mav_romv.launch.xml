@@ -1,27 +1,48 @@
 <launch>
     <!-- ROV 1 (Instance 0) -->
-    <executable cmd="bash -c '
+    <executable cmd="xterm -e bash -lc &quot;
         source ~/venv-ardupilot/bin/activate &amp;&amp; 
         cd ~/ardupilot/ArduSub &amp;&amp; 
-        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 0 -L RATBeach --out=udp:127.0.0.1:14550 '"
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py 
+            -v ArduSub 
+            -f 
+            JSON 
+            -I 0 
+            -L RATBeach 
+            --out=udp:127.0.0.1:14550 
+            --console &quot;" 
         output="screen"
     />
 
-    <!-- ROV 2 (Instance 1) -->
-    <executable cmd="bash -c '
+    <!-- ROV 2 (Instance 1)
+    <executable cmd="bash -lc &quot;
         source ~/venv-ardupilot/bin/activate &amp;&amp; 
         cd ~/ardupilot/ArduSub &amp;&amp; 
-        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 1 -L RATBeach --out=udp:127.0.0.1:14560 '"
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py 
+            -v ArduSub 
+            -f 
+            JSON 
+            -I 1 
+            -L RATBeach 
+            --out=udp:127.0.0.1:14560 
+            --console &quot;" 
         output="screen"
     />
 
     <!-- ROV 3 (Instance 2) -->
-    <executable cmd="bash -c '
+    <executable cmd="bash -lc &quot;
         source ~/venv-ardupilot/bin/activate &amp;&amp; 
         cd ~/ardupilot/ArduSub &amp;&amp; 
-        python ~/ardupilot/Tools/autotest/sim_vehicle.py -v ArduSub -f vectored JSON -I 2 -L RATBeach --out=udp:127.0.0.1:14570 '"
+        python ~/ardupilot/Tools/autotest/sim_vehicle.py 
+            -v ArduSub 
+            -f 
+            JSON 
+            -I 2 
+            -L RATBeach 
+            --out=udp:127.0.0.1:14570 
+            --console &quot;" 
         output="screen"
-    />
+    /> -->
 
     <!-- MAVROS Nodes (delayed by 10 seconds to let SITL instances boot) -->
     <timer period="10.0">

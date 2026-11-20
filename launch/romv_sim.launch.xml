@@ -1,4 +1,6 @@
 <launch>
     <include file="$(find-pkg-share rov_gz)/launch/romv/gz_romv.launch.xml"/>
-    <include file="$(find-pkg-share rov_gz)/launch/romv/mav_romv.launch.xml"/>
+    <include file="$(find-pkg-share rov_gz)/launch/romv/mav_romv_0.launch.xml"/>
+    <include file="$(find-pkg-share rov_gz)/launch/romv/mav_romv_1.launch.xml"/>
+    <!-- <include file="$(find-pkg-share rov_gz)/launch/romv/mav_romv_2.launch.xml"/> -->
 </launch>

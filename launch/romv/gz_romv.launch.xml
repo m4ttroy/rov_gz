@@ -13,28 +13,22 @@
           value="$(var rov_gz_prefix)/lib:$(var ardu_gazebo_dir)/build:$(env GZ_SIM_SYSTEM_PLUGIN_PATH '')"/>
 
   <!-- Gazebo Simulation -->
-  <executable cmd="gz sim -v4 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
+  <executable cmd="gz sim -v1 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
 
   <!-- ROMV Bridge -->
   <group if="$(var use_bridge)">
     <node pkg="ros_gz_bridge" exec="parameter_bridge" name="romv_bridge" output="screen">
       <param name="config_file" value="$(var rov_gz_share)/config/romv_bridge.yaml"/>
     </node>
-    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="imu0_bridge" 
-          args="/world/$(var world_name)/model/rov_0/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
-          output="screen">
-      <remap from="/world/$(var world_name)/model/rov_0/link/base_link/sensor/imu_sensor/imu" to="/model/rov_0/imu"/>
-    </node>
-    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="imu1_bridge" 
-          args="/world/$(var world_name)/model/rov_1/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
-          output="screen">
-      <remap from="/world/$(var world_name)/model/rov_1/link/base_link/sensor/imu_sensor/imu" to="/model/rov_1/imu"/>
-    </node>
-    <node pkg="ros_gz_bridge" exec="parameter_bridge" name="imu2_bridge" 
-          args="/world/$(var world_name)/model/rov_2/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
-          output="screen">
-      <remap from="/world/$(var world_name)/model/rov_2/link/base_link/sensor/imu_sensor/imu" to="/model/rov_2/imu"/>
-    </node>
+
+    <!-- <node pkg="ros_gz_bridge" exec="parameter_bridge" name="imu_bridge" output="screen"
+          args="/world/$(var world_name)/model/rov_0/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU
+                /world/$(var world_name)/model/rov_1/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU
+                /world/$(var world_name)/model/rov_2/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU">
+      <remap  from="/world/$(var world_name)/model/rov_0/link/base_link/sensor/imu_sensor/imu" to="/model/rov_0/imu"/>
+      <remap  from="/world/$(var world_name)/model/rov_1/link/base_link/sensor/imu_sensor/imu" to="/model/rov_1/imu"/>
+      <remap  from="/world/$(var world_name)/model/rov_2/link/base_link/sensor/imu_sensor/imu" to="/model/rov_2/imu"/>
+    </node> -->
   </group>
 
 </launch>

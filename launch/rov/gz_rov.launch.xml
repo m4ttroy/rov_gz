@@ -12,7 +12,7 @@
   <set_env name="GZ_SIM_SYSTEM_PLUGIN_PATH"
           value="$(var rov_gz_prefix)/lib:$(var ardu_gazebo_dir)/build:$(env GZ_SIM_SYSTEM_PLUGIN_PATH '')"/>
           
-  <executable cmd="gz sim -v4 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
+  <executable cmd="gz sim -v1 -r $(var rov_gz_share)/worlds/$(var world)" output="screen"/>
 
   <group if="$(var use_bridge)">
     <node pkg="ros_gz_bridge" exec="parameter_bridge" name="rov_bridge" output="screen">
